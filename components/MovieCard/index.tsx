@@ -13,14 +13,6 @@ const MovieCard = ({
     <Card style={styles.card} onPress={onViewDetailMovie}>
       <Image source={{ uri: movie.image }} style={styles.image} />
       <Card.Content>
-        {/* <Link
-          href={{
-            pathname: "/movies/[id]",
-            params: { id: "bacon" },
-          }}
-        >
-          View user details
-        </Link> */}
         <Text style={styles.title}>{movie.title}</Text>
         <Text style={styles.description}>{movie.description}</Text>
       </Card.Content>

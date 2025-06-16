@@ -1,5 +1,7 @@
 import { FlatList, StyleSheet, View } from "react-native";
 
+import HomeCarousel from "@/components/Carousel/HomeCarousel";
+import { useRouter } from "expo-router";
 import { HelloWave } from "../../../components/HelloWave";
 import MovieCard from "../../../components/MovieCard";
 import { ThemedText } from "../../../components/ThemedText";
@@ -9,6 +11,11 @@ import { IMovie } from "../../../models/movie.model";
 
 export default function HomeScreen() {
   const listMovies = movies;
+  const router = useRouter();
+
+  const navigateToDetail = (movie: IMovie) => {
+    router.push(`/movies/${movie.id}`);
+  };
 
   return (
     <View style={styles.container}>
@@ -16,12 +23,13 @@ export default function HomeScreen() {
         <ThemedText type="title">Welcome!</ThemedText>
         <HelloWave />
       </ThemedView>
+      <HomeCarousel />
       <ThemedView style={styles.stepContainer}>
         <FlatList
           data={listMovies}
           renderItem={({ item }: { item: IMovie }) => (
             <MovieCard
-              onViewDetailMovie={() => console.log(item)}
+              onViewDetailMovie={() => navigateToDetail(item)}
               movie={item}
             />
           )}
